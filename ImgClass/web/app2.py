@@ -44,14 +44,14 @@ cameras = [
 # cameras[0].set(cv2.CAP_PROP_FRAME_HEIGHT, 500)
 
 # Load model
-MODEL_PATH = 'dai-v3.h5'
-model = load_model(MODEL_PATH)
+MODEL_PATH = 'dai-v4.h5'
+model_multi = load_model(MODEL_PATH)
 print('Model loaded. Start serving...')
 
 # value = ['ba', 'ca', 'da', 'dha', 'ga', 'ha', 'ja', 'ka', 'la', 'ma',
 #         'na', 'nga', 'nya', 'pa', 'ra', 'sa', 'ta', 'tha', 'wa', 'ya']
 
-value = ['NG', 'OK']
+classes_multi = ['NGFL', 'NGSC' ,'NGSH', 'OK']
 
 n_size = 100
 
@@ -74,34 +74,26 @@ def genFrames(cameraId):
         x = np.expand_dims(resized_frame, axis=0)
         images = np.vstack([x])
 
-        pred = model.predict(images)
-        pred1 = tf.nn.sigmoid(pred[0])
-        pred2 = tf.where(pred1 < 0.5, 0, 1)
+        # FOR BINARY CLASSIFICATION
+        # pred_bin = model_bin.predict(images)
+        # sigmoid_bin = tf.nn.sigmoid(pred_bin[0]).numpy()
+        # sigmoid_bin01 = tf.where(sigmoid_bin < 0.5, 0, 1)
+        # if sigmoid_bin01 == 0:
+        #   label_bin = classes_bin[0]
+        # else:
+        #   label_bin = classes_bin[1]
 
-        if pred2 == 0:
-            script = value[0]
-        else:
-            script = value[1]
-        # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        # Convert the captured frame
-        # im = Image.fromarray(frame)
-
-        #Resizing into dimensions you used while training
-        # im = im.resize((100,100))
-        # x = np.array(im)
-        # x = np.float32(x)
-        # x = np.reshape(x, (-1, 100))
-        # print(len(x[0]))
-
-        # x = np.expand_dims(x, axis=2)
-        # x = np.expand_dims(x, axis=0)
-
-        # x = np.vstack([x])
-        # print ("data prep stage")
-        # out = model.predict(x)
-        # script = value[np.argmax(out)]
+        # FOR MULTI CLASS CLASSIFICATION
+        pred_multi = model_multi.predict(images)
+        sigmoid_multi = tf.nn.sigmoid(pred_multi[0]).numpy()
+        for i in range(len(sigmoid_multi)):
+            if sigmoid_multi[i] == max(sigmoid_multi):
+                # sigmoid_multi_max = sigmoid_multi[i]
+                label_multi = classes_multi[i]
+                # class_number = i
+                break
       
-        camValues[cameraId] = script
+        camValues[cameraId] = label_multi
         camFrames[cameraId] = frame
         camStatus[cameraId] = _
 
@@ -130,7 +122,7 @@ def video_feed(idCamera):
 
 @app.route('/')
 def index():
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory(app.static_folder, 'submenu1.html')
 
 # Broadcast status every seconds
 @socketio.on('getStatus', namespace='/ws')

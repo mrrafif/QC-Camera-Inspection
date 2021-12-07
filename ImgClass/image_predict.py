@@ -1,49 +1,43 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import os
 import tensorflow as tf
 from keras.preprocessing import image
 
-classes = ['NG', 'OK']
-loaded_model = tf.keras.models.load_model('dai-v3.h5')
+# classes_bin = ['NG', 'OK']
+# model_bin = tf.keras.models.load_model('dai-v3.h5')
 
-# test_dataset = tf.keras.utils.image_dataset_from_directory(
-#     'workspace/images/test',
-#     shuffle=True,
-#     image_size=(299,299))
-# image_batch, label_batch = test_dataset.as_numpy_iterator().next()
-# predictions = loaded_model.predict_on_batch(image_batch).flatten()
-# predictions = tf.nn.sigmoid(predictions)
-# predictions = tf.where(predictions < 0.5, 0, 1)
+classes_multi = ['NGFL', 'NGSC' ,'NGSH', 'OK']
+model_multi = tf.keras.models.load_model('dai-v4.h5')
 
-img = image.load_img('testingok2.jpeg', target_size=(299, 299))
-x = image.img_to_array(img)
+img = image.load_img('workspace/images/testing.jpeg', target_size=(299, 299)) #type nya PIL.image
+x = image.img_to_array(img) #ubah ke np.ndarray, or just use cv.imread() udah langsung np.ndarray (shape dan dim udah sama juga)
 x = np.expand_dims(x, axis=0)
 images = np.vstack([x])
 
-pred = loaded_model.predict(images)
-pred1 = tf.nn.sigmoid(pred[0])
-pred2 = tf.where(pred1 < 0.5, 0, 1)
+# FOR BINARY CLASSIFICATION
+# pred_bin = model_bin.predict(images)
+# sigmoid_bin = tf.nn.sigmoid(pred_bin[0]).numpy()
+# sigmoid_bin01 = tf.where(sigmoid_bin < 0.5, 0, 1)
+# if sigmoid_bin01 == 0:
+#   label_bin = classes_bin[0]
+# else:
+#   label_bin = classes_bin[1]
 
-if pred2 == 0:
-  label = classes[0]
-else:
-  label = classes[1]
+# FOR MULTI CLASS CLASSIFICATION
+pred_multi = model_multi.predict(images)
+sigmoid_multi = tf.nn.sigmoid(pred_multi[0]).numpy()
+for i in range(len(sigmoid_multi)):
+    if sigmoid_multi[i] == max(sigmoid_multi):
+        sigmoid_multi_max = sigmoid_multi[i]
+        label_multi = classes_multi[i]
+        class_number = i
+        break
 
-# print('Predictions Batch:\n', predictions.numpy())
-# print('Labels Batch:\n', label_batch)
-print(f'Prediction for the image: {pred2.numpy()}, the image is {label}')
-
-# plt.figure(figsize=(10, 10))
-# for i in range(9):
-#   ax = plt.subplot(3, 3, i + 1)
-#   plt.imshow(image_batch[i].astype('uint8'))
-#   plt.title(classes[predictions[i]])
-#   plt.axis('off')
-# plt.show()
+print(f'Sigmoid result: {sigmoid_multi} - Prediction: {label_multi} - Confidence: {round(sigmoid_multi_max*100, 3)} %')
+# print(f'Sigmoid result: {sigmoid_bin} - Prediction: {label_bin}')
 
 plt.figure()
 plt.axis('off')
-plt.title(label)
+plt.title(label_multi)
 result = plt.imshow(img)
 plt.show()

@@ -1,7 +1,7 @@
 import cv2 as cv
 import matplotlib.pyplot as plt
 
-i = cv.imread('workspace\\images\\raw\\NG\\ng (2).jpg')
+i = cv.imread('WhatsApp Unknown 2021-11-19 at 13.40.46\\test (2).jpeg')
 img = cv.resize(i, (600,600))
 blur = cv.GaussianBlur(img, (3,3), cv.BORDER_DEFAULT)
 # cv.imshow('awal', img)
