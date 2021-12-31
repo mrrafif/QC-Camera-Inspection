@@ -1,0 +1,152 @@
+body{
+
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+.container{
+  text-align: center;
+
+}
+
+
+
+.sidebar{
+position: fixed;
+top: 0;
+left: 0;
+height: 100%;
+width: 240px;
+padding: 6px 14px;
+}
+
+.sidebar .logo_content .logo{
+color: #24408e;
+-webkit-text-stroke: 1px #ffffff; 
+text-transform: uppercase;
+display: flex;
+font-weight: bold;
+font-size: 5rem;
+
+align-items: center;
+}
+
+.sidebar .logo_content .logo i{
+font-size: 36px;
+margin-left: 5px;
+padding: 4px;
+}
+
+.logo_content .logo .logo_name{
+font-size: 40px;
+font-weight: 400;
+font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+a{
+	display: block;
+	text-align: right;
+	text-decoration: none;
+	color: #999;
+	font-size: 0.9rem;
+	transition: .3s;
+}
+
+a:hover{
+	color: #24408e;
+}
+
+.btn{
+	display: block;
+	width: 150%;
+	height: 12%;
+  	-webkit-transform: rotate(-90deg);
+	border-radius: 25px;
+	margin: 1rem 0;
+	font-size: 1.2rem;
+  margin-top: 140px;
+  margin-left: 50px;
+	outline: none;
+	border: none;
+	padding-top: 0.6rem;
+	padding-bottom: 0.7rem;
+	background-image: linear-gradient(to right, #24408e, #375bbe, #24408e);
+	cursor: pointer;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: 'Poppins', sans-serif;
+	background-size: 200%;
+	transition: .5s;
+}
+
+.btn:hover{
+	background-position: right;
+	-webkit-transform: rotate(90deg);
+  color: rgb(226, 221, 221);
+  transform: scale(0.7);
+
+}
+
+
+.img{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.img img{
+	width: 200px;
+	margin-top: -50px;
+	margin-left: -220px;
+}
+
+.sidebar ul li a:hover{
+
+margin-left:10px;
+position: absolute;
+color: #24408e;
+background-color: white;
+align-items: center;
+padding: 5px;
+text-align: center;
+}
+
+.sidebar ul li span{
+margin-top: 2px;
+padding: 2px;
+padding-right: 60px;
+
+}
+
+.sidebar ul li span:hover{
+color: #24408e;
+}
+
+
+.sidebar ul li a i{
+height: 50px;
+min-width: 12px;
+border-radius: 12px;
+line-height: 50px;
+margin-left: -10px;
+padding: 4px;
+
+}
+
+
+.btn{
+  z-index: -1;
+}
+
+
+/* Style page content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+

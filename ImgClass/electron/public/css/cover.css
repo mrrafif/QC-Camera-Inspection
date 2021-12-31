@@ -1,0 +1,85 @@
+body{
+    background-image: url("../public/inn.png");
+	width: 100vw;
+	height: 100vh;
+}
+
+.cover-wrapper{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+img{
+    width: 40%;
+    height: 20%;
+    animation: img 2s;
+    object-fit: cover;
+    transform-origin: center;
+    transition: transform .2s ease;
+}
+
+@keyframes img{
+    from { width: 0; height: 0; } 
+    to { transform: scale(1); }    
+}
+
+
+
+
+a{
+	display: block;
+	text-align: right;
+	text-decoration: none;
+	color: #999;
+	font-size: 0.9rem;
+	transition: .3s;
+}
+
+a:hover{
+	color: #24408e;
+}
+
+.btn{
+	display: block;
+	width: 40%;
+	height: 50%;
+	border-radius: 25px;
+	margin: 1rem 0;
+	font-size: 1.2rem;
+    margin-left: 115px;
+	outline: none;
+	border: none;
+	padding-top: 0.6rem;
+	padding-bottom: 0.7rem;
+	background-image: linear-gradient(to right, #24408e, #375bbe, #24408e);
+	cursor: pointer;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: 'Poppins', sans-serif;
+	background-size: 200%;
+	transition: .5s;
+}
+
+.btn:hover{
+	background-position: right;
+	transform: scale(1.1);
+
+}
+
+@keyframes a{
+    from {transform: scale(0);}
+    to {transform: scale(1);}
+}
+
+.btn:hover{
+    text-align: center;
+    align-items: center;
+    transition: transform .2s ease;
+    transform: scale(1.2);
+}

@@ -1,0 +1,125 @@
+.img{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.img img{
+	width: 500px;
+}
+
+.wave{
+	position: fixed;
+	height: 100%;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+}
+
+.container{
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 7rem;
+	padding: 0 2rem;
+}
+
+h2{
+  margin-top: 120px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+
+.mt-5{
+  text-align: center;
+}
+
+.mt-5 a button{
+  margin-left: 5px;
+  padding: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+/*
+  .row > div{
+    
+}
+.header{
+  
+}
+
+.header, .footer{
+    
+}
+.sidebar{
+   
+    width: 215px;
+}
+.content{
+   
+    margin-left: -50px;
+}
+.sidebar, .content{
+    min-height: 300px;
+}
+
+
+  .Tabs{
+    width: 210px;
+    height:550px;
+  }
+  .Tabs .TabMenu{
+    height: 15%;
+  }
+  .Tabs .TabMenu button{
+    width: 70px;
+    height: 30px;
+    float: left;
+    border-radius: 0%;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color:#c42a37;
+  }
+  .Tabs .TabMenu button:hover{
+
+  }
+  .Tabs .tabPanel{
+    margin-top: -54px;
+    height: 100%;
+    background: #dfdfe0;
+    text-align: left;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 12px;
+    display: none;
+
+  }
+
+  .Tabs .tabPanel label{
+  
+    font-weight: bold;
+  }
+
+  .Tabs .tabPanel table tr td{
+    padding-bottom: 10px;
+    padding-left: 5px;
+  }
+  */
